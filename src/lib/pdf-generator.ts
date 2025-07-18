@@ -9,6 +9,7 @@ export async function generatePDF(tripData: InsertTripPlan) {
   const secondaryColor = '#10B981';
   const textColor = '#374151';
   
+  
   // Header
   doc.setFillColor(primaryColor);
   doc.rect(0, 0, 210, 30, 'F');

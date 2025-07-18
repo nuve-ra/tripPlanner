@@ -11,7 +11,7 @@ export const users = pgTable("users", {
 export const tripPlans = pgTable("trip_plans", {
   id: serial("id").primaryKey(),
   tripName: text("trip_name").notNull(),
-  budget: integer("budget"),
+  budget: text("budget"),
   startDate: text("start_date").notNull(),
   endDate: text("end_date").notNull(),
   travelers: integer("travelers").notNull(),
