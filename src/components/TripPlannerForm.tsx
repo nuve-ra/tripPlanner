@@ -19,6 +19,7 @@ import type { ControllerRenderProps } from "react-hook-form";
 import axios from "axios";
 
 
+
 export default function TripPlannerForm() {
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
   const [submittedTripData, setSubmittedTripData] = useState<InsertTripPlan | null>(null);
@@ -162,41 +163,41 @@ const handleDownloadPDF = (dataToUse: InsertTripPlan | null) => {
       
       
       addSection('Trip Overview', [
-        { label: 'Trip Name', value: 'tripName' },
-        { label: 'Destination', value: 'destinationCity' },
-        { label: 'Departure City', value: 'departureCity' },
-        { label: 'Duration', value: 'nights' },
-        { label: 'Travelers', value: 'travelers' },
-        { label: 'Budget', value: 'budget' },
+        { label: 'Trip Name', value: 'tripData.tripName' },
+        { label: 'Destination', value: 'tripData.destinationCity' },
+        { label: 'Departure City', value: 'tripData.departureCity' },
+        { label: 'Duration', value: 'tripData.nights' },
+        { label: 'Travelers', value: 'tripData.travelers' },
+        { label: 'Budget', value: 'tripData.budget' },
       ]);
 
       addSection('Travel Details', [
-        { label: 'Travel Class', value: 'travelClass' },
-        { label: 'Preferred Airline', value: 'preferredAirline' },
-        { label: 'Stops', value: 'stops' },
+        { label: 'Travel Class', value: 'tripData.travelClass' },
+        { label: 'Preferred Airline', value: 'tripData.preferredAirline' },
+        { label: 'Stops', value: 'tripData.stops' },
       ]);
 
       addSection('Accommodation', [
-        { label: 'Type', value: 'accommodationType' },
-        { label: 'Star Rating', value: 'starRating' },
-        { label: 'Room Type', value: 'roomType' },
+        { label: 'Type', value: 'tripData.accommodationType' },
+        { label: 'Star Rating', value: 'tripData.starRating' },
+        { label: 'Room Type', value: 'tripData.roomType' },
       ]);
 
       addSection('Activities & Preferences', [
-        { label: 'Interests', value: 'activityCategories' },
-        { label: 'Special Requests', value: 'specialRequests' },
+        { label: 'Interests', value: 'tripData.activityCategories' },
+        { label: 'Special Requests', value: 'tripData.specialRequests' },
       ]);
       addSection('Travel Insurance', [
-        { label: 'Travel Insurance', value: 'travelInsurance' },
+        { label: 'Travel Insurance', value: 'tripData.travelInsurance' },
       ]);
       addSection('Dietary Restrictions', [
-        { label: 'Dietary Restrictions', value: 'dietaryRestrictions' },
+        { label: 'Dietary Restrictions', value: 'tripData.dietaryRestrictions' },
       ]);
       addSection('Special Requests', [
-        { label: 'Special Requests', value: 'specialRequests' },
+        { label: 'Special Requests', value: 'tripData.specialRequests' },
       ]);
       addSection('Status', [
-        { label: 'Status', value: 'status' },
+        { label: 'Status', value: 'tripData.status' },
       ]);
 
       // Footer
