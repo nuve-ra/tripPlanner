@@ -17,6 +17,7 @@ import { MapPin, Ticket, Bed, Calendar, Settings, Save, Eye, Plus, Download, Cal
 import TripSummary from "./TripSummary";
 import type { ControllerRenderProps } from "react-hook-form";
 import axios from "axios";
+import { generatePDF } from "../lib/pdf-generator";
 
 
 
@@ -74,10 +75,11 @@ const onSubmit = (data: InsertTripPlan) => {
 };
 
 
-const handleDownloadPDF = (dataToUse: InsertTripPlan | null) => {
+const handleDownloadPDF = async (dataToUse: InsertTripPlan | null) => {
     setIsGeneratingPDF(true);
     try {
-            const formData = dataToUse || form.getValues();
+            const formData : InsertTripPlan = dataToUse || form.getValues();
+            await generatePDF(formData);
       if (!formData) {
         console.error("No trip data available to generate PDF.");
         return;
@@ -163,41 +165,41 @@ const handleDownloadPDF = (dataToUse: InsertTripPlan | null) => {
       
       
       addSection('Trip Overview', [
-        { label: 'Trip Name', value: 'tripData.tripName' },
-        { label: 'Destination', value: 'tripData.destinationCity' },
-        { label: 'Departure City', value: 'tripData.departureCity' },
-        { label: 'Duration', value: 'tripData.nights' },
-        { label: 'Travelers', value: 'tripData.travelers' },
-        { label: 'Budget', value: 'tripData.budget' },
+        { label: 'Trip Name', value: 'tripName' },
+        { label: 'Destination', value: 'destinationCity' },
+        { label: 'Departure City', value: 'departureCity' },
+        { label: 'Duration', value: 'nights' },
+        { label: 'Travelers', value: 'travelers' },
+        { label: 'Budget', value: "budget" },
       ]);
 
       addSection('Travel Details', [
-        { label: 'Travel Class', value: 'tripData.travelClass' },
-        { label: 'Preferred Airline', value: 'tripData.preferredAirline' },
-        { label: 'Stops', value: 'tripData.stops' },
+        { label: 'Travel Class', value: 'travelClass' },
+        { label: 'Preferred Airline', value: 'preferredAirline' },
+        { label: 'Stops', value: 'stops' },
       ]);
 
       addSection('Accommodation', [
-        { label: 'Type', value: 'tripData.accommodationType' },
-        { label: 'Star Rating', value: 'tripData.starRating' },
-        { label: 'Room Type', value: 'tripData.roomType' },
+        { label: 'Type', value: 'accommodationType' },
+        { label: 'Star Rating', value: 'starRating' },
+        { label: 'Room Type', value: 'roomType' },
       ]);
 
       addSection('Activities & Preferences', [
-        { label: 'Interests', value: 'tripData.activityCategories' },
-        { label: 'Special Requests', value: 'tripData.specialRequests' },
+        { label: 'Interests', value: 'activityCategories' },
+        { label: 'Special Requests', value: 'specialRequests' },
       ]);
       addSection('Travel Insurance', [
-        { label: 'Travel Insurance', value: 'tripData.travelInsurance' },
+        { label: 'Travel Insurance', value: 'travelInsurance' },
       ]);
       addSection('Dietary Restrictions', [
-        { label: 'Dietary Restrictions', value: 'tripData.dietaryRestrictions' },
+        { label: 'Dietary Restrictions', value: 'dietaryRestrictions' },
       ]);
       addSection('Special Requests', [
-        { label: 'Special Requests', value: 'tripData.specialRequests' },
+        { label: 'Special Requests', value: 'specialRequests' },
       ]);
       addSection('Status', [
-        { label: 'Status', value: 'tripData.status' },
+        { label: 'Status', value: 'status' },
       ]);
 
       // Footer
